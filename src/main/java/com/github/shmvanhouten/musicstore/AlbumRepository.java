@@ -1,11 +1,11 @@
 package com.github.shmvanhouten.musicstore;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
 public class AlbumRepository {
     public List<Album> getAllAlbumsForArtist(Artist artist){
         List<Album> albums = new ArrayList<>();

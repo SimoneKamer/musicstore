@@ -12,7 +12,6 @@ public class AlbumFinderProgram {
         FindAlbumsForArtistController controller = new FindAlbumsForArtistController(artistService, albumService);
 
 
-
         List<Album> albumsForArtist = controller.getAlbumsForArtist("John Doe");
 
         for (Album album : albumsForArtist) {
