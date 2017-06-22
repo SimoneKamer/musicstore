@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Collections;
 import java.util.List;
 
+import static com.github.shmvanhouten.musicstore.DatabaseStructure.Table.GENRE;
+
 @Repository
 public class GenreRepositoryJdbcTempateImpl implements GenreRepository {
 
@@ -24,6 +26,7 @@ public class GenreRepositoryJdbcTempateImpl implements GenreRepository {
 
     @Override
     public List<Genre> getAll() {
-        return Collections.emptyList();
+        String selectQuery = "SELECT * FROM " + GENRE;
+        return jdbcTemplate.query(selectQuery, new GenreRowMapper());
     }
 }
