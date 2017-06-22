@@ -29,7 +29,7 @@ public class GenreResource {
 
     @RequestMapping(method = GET, path = "/{id}")
     public Genre getById(@PathVariable("id") Long id) {
-        return aGenre().withId(id).withName("Hardcoded").build();
+        return genreRepository.getById(id);
     }
 
 }

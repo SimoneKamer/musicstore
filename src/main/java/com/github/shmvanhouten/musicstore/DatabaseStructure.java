@@ -1,6 +1,11 @@
 package com.github.shmvanhouten.musicstore;
 
 public class DatabaseStructure {
+
+    public class Table {
+        public static final String GENRE = "genre";
+    }
+
     public class Track {
         public static final String TRACK = "Track";
         public static final String TRACK_TRACK_ID = "Track.TrackId";
@@ -21,4 +26,10 @@ public class DatabaseStructure {
         public static final String ARTIST_NAME = "Artist.Name";
 
     }
+
+    public class GenreColumns {
+        public static final String ID = "GenreId";
+        public static final String NAME = "Name";
+    }
+
 }
