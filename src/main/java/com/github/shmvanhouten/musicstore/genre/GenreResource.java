@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.github.shmvanhouten.musicstore.genre.Genre.GenreBuilder.aGenre;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping("/genre")
@@ -31,5 +31,12 @@ public class GenreResource {
     public Genre getById(@PathVariable("id") Long id) {
         return genreRepository.getById(id);
     }
+
+    @RequestMapping(method = POST)
+    public Long addGenre(String name) {
+        return genreRepository.addGenre(name);
+    }
+
+
 
 }

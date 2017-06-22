@@ -7,4 +7,6 @@ public interface GenreRepository {
     List<Genre> getAll();
 
     Genre getById(Long id);
+
+    Long addGenre(String name);
 }

@@ -24,6 +24,6 @@ public class TrackFinderApp implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        controller.printTracks();
+        // controller.printTracks();
     }
 }

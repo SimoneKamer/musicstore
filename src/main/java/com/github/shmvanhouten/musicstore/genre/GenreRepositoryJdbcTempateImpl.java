@@ -54,7 +54,26 @@ public class GenreRepositoryJdbcTempateImpl implements GenreRepository {
         return namedParameterJdbcTemplate.queryForObject(selectQuery, params, new GenreRowMapper());
     }
 
+    @Override
+    public Long addGenre(String name) {
+        String query = new SQL()
+                .SELECT("MAX(" + ID + ")")
+                .FROM(GENRE)
+                .toString();
+        Long nextId = jdbcTemplate.queryForObject(query, Long.class) + 1;
 
+        String insertSql = new SQL()
+                .INSERT_INTO(GENRE)
+                .VALUES(ID, namedParam(ID))
+                .VALUES(NAME, namedParam(NAME))
+                .toString();
+
+        MapSqlParameterSource paramSource = new MapSqlParameterSource(ID, nextId).
+                addValue(NAME, name);
+        namedParameterJdbcTemplate.update(insertSql, paramSource);
+
+        return nextId;
+    }
 
 
 }
