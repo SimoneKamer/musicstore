@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface ArtistRepository {
     List<Artist> getAll();
+
+    Long addArtist(String name);
 }

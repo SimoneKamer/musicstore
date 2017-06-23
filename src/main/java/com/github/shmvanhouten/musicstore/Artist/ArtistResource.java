@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 @RequestMapping("/artist")
@@ -23,5 +24,10 @@ public class ArtistResource {
     @ApiOperation(value = "getArtists", nickname = "getArtists")
     public List<Artist> getAll(){
         return artistRepository.getAll();
+    }
+
+    @RequestMapping(method = POST)
+    public Long addArtist(String name){
+        return artistRepository.addArtist(name);
     }
 }
