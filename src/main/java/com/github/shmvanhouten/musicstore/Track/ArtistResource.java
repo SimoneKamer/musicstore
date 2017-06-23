@@ -6,11 +6,11 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
-public class FindTracksForArtistController {
-    private final TrackRepository trackRepository;
+public class ArtistResource {
+    private final TrackRepositoryJdbcTemplateImpl trackRepository;
 
     @Autowired
-    public FindTracksForArtistController(TrackRepository trackRepository) {
+    public ArtistResource(TrackRepositoryJdbcTemplateImpl trackRepository) {
         this.trackRepository = trackRepository;
     }
 

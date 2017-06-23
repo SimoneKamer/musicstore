@@ -1,6 +1,6 @@
 package com.github.shmvanhouten.musicstore;
 
-import com.github.shmvanhouten.musicstore.Track.FindTracksForArtistController;
+import com.github.shmvanhouten.musicstore.Track.ArtistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TrackFinderApp implements CommandLineRunner {
 
-    private final FindTracksForArtistController controller;
+    private final ArtistResource controller;
 
     @Autowired
-    public TrackFinderApp(FindTracksForArtistController controller) {
+    public TrackFinderApp(ArtistResource controller) {
         this.controller = controller;
     }
 
@@ -24,6 +24,6 @@ public class TrackFinderApp implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        // controller.printTracks();
+         controller.printTracks();
     }
 }
