@@ -51,6 +51,18 @@ public class ArtistRepositoryJdbcTemplateImpl implements ArtistRepository {
         return nextId;
     }
 
+    @Override
+    public Artist getById(Long id) {
+        String selectQuery = new SQL()
+                .SELECT(ARTIST_ID)
+                .SELECT(ARTIST_NAME)
+                .FROM(ARTIST)
+                .WHERE(ARTIST_ID + " = " + namedParam(ARTIST_ID))
+                .toString();
+        SqlParameterSource params = new MapSqlParameterSource(ARTIST_ID, id);
+        return namedParameterJdbcTemplate.queryForObject(selectQuery, params, new ArtistRowMapper());
+    }
+
     private Long getNextArtistId(String name) {
         String selectQuery = new SQL()
                 .SELECT("MAX(" + ARTIST_ID + ")")

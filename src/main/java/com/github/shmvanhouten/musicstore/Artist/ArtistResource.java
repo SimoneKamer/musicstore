@@ -2,6 +2,7 @@ package com.github.shmvanhouten.musicstore.Artist;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,11 @@ public class ArtistResource {
     @ApiOperation(value = "getArtists", nickname = "getArtists")
     public List<Artist> getAll(){
         return artistRepository.getAll();
+    }
+
+    @RequestMapping(method = GET, path = "/{id}")
+    public Artist getById(@PathVariable("id")Long id){
+        return artistRepository.getById(id);
     }
 
     @RequestMapping(method = POST)
