@@ -17,4 +17,32 @@ public class Artist {
     public String getName() {
         return name;
     }
+
+
+    public static final class ArtistBuilder {
+        private Integer artistId;
+        private String name;
+
+        private ArtistBuilder() {
+        }
+
+        public static ArtistBuilder anArtist() {
+            return new ArtistBuilder();
+        }
+
+        public ArtistBuilder withArtistId(Integer artistId) {
+            this.artistId = artistId;
+            return this;
+        }
+
+        public ArtistBuilder withName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Artist build() {
+            Artist artist = new Artist(artistId, name);
+            return artist;
+        }
+    }
 }

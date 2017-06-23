@@ -33,7 +33,7 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
                 .SELECT(ARTIST_NAME)
                 .FROM(TRACK)
                 .JOIN(ALBUM + " ON " + ALBUM_ALBUM_ID + " = " + TRACK_ALBUM_ID)
-                .JOIN(ARTIST + " ON " + ARTIST_ARTIST_ID + " = " + ALBUM_ARTIST_ID)
+                .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
                 .WHERE(ARTIST_NAME + " = " + namedParam(ARTIST_NAME))
                 .toString();
         SqlParameterSource params = new MapSqlParameterSource(ARTIST_NAME, name);

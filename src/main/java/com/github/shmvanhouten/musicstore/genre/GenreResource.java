@@ -27,7 +27,6 @@ public class GenreResource {
     @ApiOperation(value = "getGenres", nickname = "getGenres")
     public List<Genre> getAll() {
         return genreRepository.getAll();
-
     }
 
     @RequestMapping(method = GET, path = "/{id}")
@@ -39,7 +38,5 @@ public class GenreResource {
     public Long addGenre(String name) {
         return genreRepository.addGenre(name);
     }
-
-
 
 }
