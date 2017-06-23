@@ -3,5 +3,4 @@
 
 target
 /mcbeelen-application.properties
-
-application.properties
+src/main/resources/shmvanhouten-application.properties
