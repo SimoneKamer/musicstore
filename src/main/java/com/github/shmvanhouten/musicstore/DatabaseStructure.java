@@ -22,7 +22,7 @@ public class DatabaseStructure {
     }
 
     public class ArtistColumns {
-        public static final String ARTIST_ARTIST_ID = "Artist.ArtistId";
+        public static final String ARTIST_ID = "Artist.ArtistId";
         public static final String ARTIST_NAME = "Artist.Name";
 
     }
