@@ -25,7 +25,6 @@ public class GenreResource {
 
     @RequestMapping(method = GET)
     @ApiOperation(value = "getGenres", nickname = "getGenres")
-    @A
     public List<Genre> getAll() {
         return genreRepository.getAll();
 
