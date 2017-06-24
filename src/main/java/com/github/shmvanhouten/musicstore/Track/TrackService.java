@@ -17,9 +17,8 @@ public class TrackService {
 
     public Long setTrack(TrackRequest trackRequest) {
         Long id = trackRepository.getNextTrackId();
-        String name = trackRequest.getName();
         Long albumId = albumRepository.getIdByTitleAndArtist(trackRequest.getAlbumTitle(), trackRequest.getArtistName());
-        trackRepository.setTrack(id, name, albumId);
+        trackRepository.setTrack(id, trackRequest, albumId);
         return id;
     }
 }
