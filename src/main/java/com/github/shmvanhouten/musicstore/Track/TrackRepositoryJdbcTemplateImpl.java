@@ -39,4 +39,21 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
         SqlParameterSource params = new MapSqlParameterSource(ARTIST_NAME, name);
         return namedParameterJdbcTemplate.query(sql, params, new TrackRowMapper());
     }
+
+    @Override
+    public List<Track> getTracksForAlbum(String artistName, String albumName) {
+        String sql = new SQL().SELECT(TRACK_ID)
+                .SELECT(TRACK_NAME)
+                .SELECT(ALBUM_TITLE)
+                .SELECT(ARTIST_NAME)
+                .FROM(TRACK)
+                .JOIN(ALBUM + " ON " + ALBUM_ALBUM_ID + " = " + TRACK_ALBUM_ID)
+                .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
+                .WHERE(ARTIST_NAME + " = " + namedParam(ARTIST_NAME))
+                .WHERE(ALBUM_TITLE + " = " + namedParam(ALBUM_TITLE))
+                .toString();
+        SqlParameterSource params = new MapSqlParameterSource(ARTIST_NAME, artistName)
+                .addValue(ALBUM_TITLE, albumName);
+        return namedParameterJdbcTemplate.query(sql, params, new TrackRowMapper());
+    }
 }

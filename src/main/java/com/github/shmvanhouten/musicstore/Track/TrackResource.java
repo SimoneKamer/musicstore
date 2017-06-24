@@ -25,4 +25,8 @@ public class TrackResource {
         return trackRepository.getTracksForArtist(artistName);
     }
 
+    @RequestMapping(method=GET, path="/{artistName}/{albumName}")
+    public List<Track> getByArtistAndAlbum(@PathVariable("artistName") String artistName, @PathVariable("albumName") String albumName){
+        return trackRepository.getTracksForAlbum(artistName, albumName);
+    }
 }
