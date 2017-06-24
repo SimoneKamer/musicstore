@@ -13,6 +13,9 @@ public class DatabaseStructure {
         public static final String TRACK_ID = "Track.TrackId";
         public static final String TRACK_NAME = "Track.Name";
         public static final String TRACK_ALBUM_ID = "Track.AlbumId";
+        public static final String TRACK_MEDIA_TYPE_ID = "Track.MediaTypeId";
+        public static final String MILLISECONDS = "Track.Milliseconds";
+        public static final String UNIT_PRICE = "Track.UnitPrice";
     }
 
     public class AlbumColumns {

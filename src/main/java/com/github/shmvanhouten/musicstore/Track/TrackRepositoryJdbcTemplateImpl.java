@@ -61,17 +61,23 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
     }
 
     @Override
-    public Long setTrack(TrackRequest trackRequest) {
-        Long nextId = getNextTrackId();
-        //todo: make a TrackService
-        // Long albumId = albumRepository.getIdByNameAndArtist
+    public void setTrack(Long id, String name, Long albumId) {
         String insertSql = new SQL()
                 .INSERT_INTO(TRACK)
                 .VALUES(TRACK_ID, namedParam(TRACK_ID))
                 .VALUES(TRACK_NAME, namedParam(TRACK_NAME))
                 .VALUES(TRACK_ALBUM_ID, namedParam(ALBUM_ID))
+                .VALUES(TRACK_MEDIA_TYPE_ID, namedParam(TRACK_MEDIA_TYPE_ID))
+                .VALUES(MILLISECONDS, namedParam(MILLISECONDS))
+                .VALUES(UNIT_PRICE, namedParam(UNIT_PRICE))
                 .toString();
-        return nextId;
+        SqlParameterSource params = new MapSqlParameterSource(TRACK_ID, id)
+                .addValue(TRACK_NAME, name)
+                .addValue(ALBUM_ID, albumId)
+                .addValue(TRACK_MEDIA_TYPE_ID, 1)
+                .addValue(MILLISECONDS, 3000)
+                .addValue(UNIT_PRICE, 1.50);
+        namedParameterJdbcTemplate.update(insertSql, params);
     }
 
     @Override

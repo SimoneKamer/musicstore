@@ -7,7 +7,7 @@ public interface TrackRepository {
 
     List<Track> getTracksForAlbum(String artistName, String albumName);
 
-    Long setTrack(TrackRequest trackRequest);
+    void setTrack(Long id, String name, Long albumId);
 
     Long getNextTrackId();
 }

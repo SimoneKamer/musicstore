@@ -16,10 +16,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RequestMapping("/track")
 public class TrackResource {
     private final TrackRepository trackRepository;
+    private final TrackService trackService;
 
     @Autowired
-    public TrackResource(TrackRepositoryJdbcTemplateImpl trackRepository) {
+    public TrackResource(TrackRepositoryJdbcTemplateImpl trackRepository, TrackService trackService) {
         this.trackRepository = trackRepository;
+        this.trackService = trackService;
     }
 
     @RequestMapping(method=GET, path="/{artistName}")
@@ -34,6 +36,6 @@ public class TrackResource {
 
     @RequestMapping(method = POST, consumes = "application/json")
     public Long addTrack(@RequestBody TrackRequest trackRequest){
-        return trackRepository.setTrack(trackRequest);
+        return trackService.setTrack(trackRequest);
     }
 }

@@ -12,6 +12,9 @@ public class TrackRequest {
         this.artistName = artistName;
     }
 
+    public TrackRequest() {
+    }
+
     public String getName() {
         return name;
     }
