@@ -35,7 +35,7 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
                 .SELECT(ALBUM_TITLE)
                 .SELECT(ARTIST_NAME)
                 .FROM(TRACK)
-                .JOIN(ALBUM + " ON " + ALBUM_ALBUM_ID + " = " + TRACK_ALBUM_ID)
+                .JOIN(ALBUM + " ON " + ALBUM_ID + " = " + TRACK_ALBUM_ID)
                 .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
                 .WHERE(ARTIST_NAME + " = " + namedParam(ARTIST_NAME))
                 .toString();
@@ -50,7 +50,7 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
                 .SELECT(ALBUM_TITLE)
                 .SELECT(ARTIST_NAME)
                 .FROM(TRACK)
-                .JOIN(ALBUM + " ON " + ALBUM_ALBUM_ID + " = " + TRACK_ALBUM_ID)
+                .JOIN(ALBUM + " ON " + ALBUM_ID + " = " + TRACK_ALBUM_ID)
                 .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
                 .WHERE(ARTIST_NAME + " = " + namedParam(ARTIST_NAME))
                 .WHERE(ALBUM_TITLE + " = " + namedParam(ALBUM_TITLE))
@@ -69,12 +69,13 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
                 .INSERT_INTO(TRACK)
                 .VALUES(TRACK_ID, namedParam(TRACK_ID))
                 .VALUES(TRACK_NAME, namedParam(TRACK_NAME))
-                .VALUES(TRACK_ALBUM_ID, namedParam(ALBUM_ALBUM_ID))
+                .VALUES(TRACK_ALBUM_ID, namedParam(ALBUM_ID))
                 .toString();
         return nextId;
     }
 
-    private Long getNextTrackId() {
+    @Override
+    public Long getNextTrackId() {
         String selectQuery = new SQL()
                 .SELECT("MAX(" + TRACK_ID + ")")
                 .FROM(TRACK)

@@ -17,7 +17,7 @@ public class DatabaseStructure {
 
     public class AlbumColumns {
         public static final String ALBUM_TITLE ="Album.Title";
-        public static final String ALBUM_ALBUM_ID ="Album.AlbumId";
+        public static final String ALBUM_ID ="Album.AlbumId";
         public static final String ALBUM_ARTIST_ID ="Album.ArtistId";
     }
 
