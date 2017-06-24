@@ -2,6 +2,7 @@ package com.github.shmvanhouten.musicstore.Track;
 
 import org.apache.ibatis.jdbc.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -19,10 +20,12 @@ import static com.github.shmvanhouten.musicstore.util.NamedParamUtil.namedParam;
 public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TrackRepositoryJdbcTemplateImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public TrackRepositoryJdbcTemplateImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -55,5 +58,27 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
         SqlParameterSource params = new MapSqlParameterSource(ARTIST_NAME, artistName)
                 .addValue(ALBUM_TITLE, albumName);
         return namedParameterJdbcTemplate.query(sql, params, new TrackRowMapper());
+    }
+
+    @Override
+    public Long setTrack(TrackRequest trackRequest) {
+        Long nextId = getNextTrackId();
+        //todo: make a TrackService
+        // Long albumId = albumRepository.getIdByNameAndArtist
+        String insertSql = new SQL()
+                .INSERT_INTO(TRACK)
+                .VALUES(TRACK_ID, namedParam(TRACK_ID))
+                .VALUES(TRACK_NAME, namedParam(TRACK_NAME))
+                .VALUES(TRACK_ALBUM_ID, namedParam(ALBUM_ALBUM_ID))
+                .toString();
+        return nextId;
+    }
+
+    private Long getNextTrackId() {
+        String selectQuery = new SQL()
+                .SELECT("MAX(" + TRACK_ID + ")")
+                .FROM(TRACK)
+                .toString();
+        return jdbcTemplate.queryForObject(selectQuery, Long.class) + 1;
     }
 }

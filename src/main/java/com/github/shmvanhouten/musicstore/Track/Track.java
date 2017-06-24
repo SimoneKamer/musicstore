@@ -6,7 +6,7 @@ public class Track {
     private final String albumTitle;
     private final String artistName;
 
-    public Track(int trackId, String name, String albumTitle, String artistName) {
+    public Track(int trackId, String name, String albumTitle, String artistName){
         this.trackId = trackId;
         this.name = name;
         this.albumTitle = albumTitle;
@@ -25,6 +25,9 @@ public class Track {
         return albumTitle;
     }
 
+    public String getArtistName() {
+        return artistName;
+    }
 
     public static final class TrackBuilder {
         private int trackId;
