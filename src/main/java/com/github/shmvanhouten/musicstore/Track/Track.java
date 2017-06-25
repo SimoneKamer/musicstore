@@ -1,16 +1,20 @@
 package com.github.shmvanhouten.musicstore.Track;
 
+import java.math.BigDecimal;
+
 public class Track {
     private final int trackId;
     private final String name;
     private final String albumTitle;
     private final String artistName;
+    private final BigDecimal price;
 
-    public Track(int trackId, String name, String albumTitle, String artistName){
+    public Track(int trackId, String name, String albumTitle, String artistName, BigDecimal price){
         this.trackId = trackId;
         this.name = name;
         this.albumTitle = albumTitle;
         this.artistName = artistName;
+        this.price = price;
     }
 
     public int getTrackId() {
@@ -29,11 +33,16 @@ public class Track {
         return artistName;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
     public static final class TrackBuilder {
         private int trackId;
         private String name;
         private String albumTitle;
         private String artistName;
+        private BigDecimal price;
 
         private TrackBuilder() {
         }
@@ -62,8 +71,13 @@ public class Track {
             return this;
         }
 
+        public TrackBuilder withPrice(BigDecimal price) {
+            this.price = price;
+            return this;
+        }
+
         public Track build() {
-            Track track = new Track(trackId, name, albumTitle, artistName);
+            Track track = new Track(trackId, name, albumTitle, artistName, price);
             return track;
         }
     }

@@ -30,10 +30,7 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
 
     @Override
     public List<Track> getTracksForArtist(String name){
-        String sql = new SQL().SELECT(TRACK_ID)
-                .SELECT(TRACK_NAME)
-                .SELECT(ALBUM_TITLE)
-                .SELECT(ARTIST_NAME)
+        String sql = getSelectValues()
                 .FROM(TRACK)
                 .JOIN(ALBUM + " ON " + ALBUM_ID + " = " + TRACK_ALBUM_ID)
                 .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
@@ -45,10 +42,7 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
 
     @Override
     public List<Track> getTracksForAlbum(String artistName, String albumName) {
-        String sql = new SQL().SELECT(TRACK_ID)
-                .SELECT(TRACK_NAME)
-                .SELECT(ALBUM_TITLE)
-                .SELECT(ARTIST_NAME)
+        String sql = getSelectValues()
                 .FROM(TRACK)
                 .JOIN(ALBUM + " ON " + ALBUM_ID + " = " + TRACK_ALBUM_ID)
                 .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
@@ -87,5 +81,26 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
                 .FROM(TRACK)
                 .toString();
         return jdbcTemplate.queryForObject(selectQuery, Long.class) + 1;
+    }
+
+    @Override
+    public Track getById(Long trackId) {
+        String selectQuery = getSelectValues()
+                .FROM(TRACK)
+                .JOIN(ALBUM + " ON " + ALBUM_ID + " = " + TRACK_ALBUM_ID)
+                .JOIN(ARTIST + " ON " + ARTIST_ID + " = " + ALBUM_ARTIST_ID)
+                .WHERE(TRACK_ID + " = " + namedParam(TRACK_ID))
+                .toString();
+        SqlParameterSource parameters = new MapSqlParameterSource(TRACK_ID, trackId);
+        return namedParameterJdbcTemplate.queryForObject(selectQuery, parameters, new TrackRowMapper());
+    }
+
+    private SQL getSelectValues() {
+        return new SQL()
+                .SELECT(TRACK_ID)
+                .SELECT(TRACK_NAME)
+                .SELECT(ARTIST_NAME)
+                .SELECT(ALBUM_TITLE)
+                .SELECT(UNIT_PRICE);
     }
 }

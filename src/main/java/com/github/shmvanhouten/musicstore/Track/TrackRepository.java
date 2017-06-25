@@ -10,4 +10,6 @@ public interface TrackRepository {
     void setTrack(Long id, TrackJsonPojo trackJsonPojo, Long albumId);
 
     Long getNextTrackId();
+
+    Track getById(Long trackId);
 }

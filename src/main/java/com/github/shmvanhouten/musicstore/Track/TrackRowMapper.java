@@ -9,6 +9,7 @@ import static com.github.shmvanhouten.musicstore.DatabaseStructure.AlbumColumns.
 import static com.github.shmvanhouten.musicstore.DatabaseStructure.ArtistColumns.ARTIST_NAME;
 import static com.github.shmvanhouten.musicstore.DatabaseStructure.TrackColumns.TRACK_NAME;
 import static com.github.shmvanhouten.musicstore.DatabaseStructure.TrackColumns.TRACK_ID;
+import static com.github.shmvanhouten.musicstore.DatabaseStructure.TrackColumns.UNIT_PRICE;
 import static com.github.shmvanhouten.musicstore.Track.Track.TrackBuilder.aTrack;
 
 public class TrackRowMapper implements RowMapper<Track> {
@@ -20,6 +21,7 @@ public class TrackRowMapper implements RowMapper<Track> {
                 .withName(resultSet.getString(TRACK_NAME))
                 .withAlbumTitle(resultSet.getString(ALBUM_TITLE))
                 .withArtistName(resultSet.getString(ARTIST_NAME))
+                .withPrice(resultSet.getBigDecimal(UNIT_PRICE))
                 .build();
     }
 }

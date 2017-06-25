@@ -24,6 +24,11 @@ public class TrackResource {
         this.trackService = trackService;
     }
 
+    @RequestMapping(method = GET, path = "/byId/{trackId}")
+    public Track getById(@PathVariable("trackId")Long trackId){
+        return trackRepository.getById(trackId);
+    }
+
     @RequestMapping(method=GET, path="/{artistName}")
     public List<Track> getByArtistName(@PathVariable("artistName")String artistName){
         return trackRepository.getTracksForArtist(artistName);
