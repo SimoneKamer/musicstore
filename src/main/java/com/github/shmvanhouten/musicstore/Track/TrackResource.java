@@ -35,7 +35,7 @@ public class TrackResource {
     }
 
     @RequestMapping(method = POST, consumes = "application/json")
-    public Long addTrack(@RequestBody TrackRequest trackRequest){
-        return trackService.setTrack(trackRequest);
+    public Long addTrack(@RequestBody TrackJsonPojo trackJsonPojo){
+        return trackService.setTrack(trackJsonPojo);
     }
 }

@@ -61,7 +61,7 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
     }
 
     @Override
-    public void setTrack(Long id, TrackRequest trackRequest, Long albumId) {
+    public void setTrack(Long id, TrackJsonPojo trackJsonPojo, Long albumId) {
         String insertSql = new SQL()
                 .INSERT_INTO(TRACK)
                 .VALUES(TRACK_ID, namedParam(TRACK_ID))
@@ -72,11 +72,11 @@ public class TrackRepositoryJdbcTemplateImpl implements TrackRepository {
                 .VALUES(UNIT_PRICE, namedParam(UNIT_PRICE))
                 .toString();
         SqlParameterSource params = new MapSqlParameterSource(TRACK_ID, id)
-                .addValue(TRACK_NAME, trackRequest.getName())
+                .addValue(TRACK_NAME, trackJsonPojo.getName())
                 .addValue(ALBUM_ID, albumId)
-                .addValue(TRACK_MEDIA_TYPE_ID, trackRequest.getMediaTypeId())
-                .addValue(MILLISECONDS, trackRequest.getMilliseconds())
-                .addValue(UNIT_PRICE, trackRequest.getUnitPrice());
+                .addValue(TRACK_MEDIA_TYPE_ID, trackJsonPojo.getMediaTypeId())
+                .addValue(MILLISECONDS, trackJsonPojo.getMilliseconds())
+                .addValue(UNIT_PRICE, trackJsonPojo.getUnitPrice());
         namedParameterJdbcTemplate.update(insertSql, params);
     }
 

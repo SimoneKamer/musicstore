@@ -1,6 +1,6 @@
 package com.github.shmvanhouten.musicstore.Track;
 
-public class TrackRequest {
+public class TrackJsonPojo {
 
     private String name;
     private String albumTitle;
@@ -9,18 +9,6 @@ public class TrackRequest {
     private Integer milliseconds;
     private Double unitPrice;
 
-    public TrackRequest(String name, String albumTitle, String artistName, Long mediaTypeId, Integer milliseconds, Double unitPrice) {
-        this.name = name;
-        this.albumTitle = albumTitle;
-        this.artistName = artistName;
-        this.mediaTypeId = mediaTypeId;
-        this.milliseconds = milliseconds;
-        this.unitPrice = unitPrice;
-    }
-
-
-    public TrackRequest() {
-    }
 
     public String getName() {
         return name;
