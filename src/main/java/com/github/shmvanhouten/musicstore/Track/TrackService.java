@@ -15,10 +15,10 @@ public class TrackService {
         this.albumRepository = albumRepository;
     }
 
-    public Long setTrack(TrackJsonPojo trackJsonPojo) {
+    public Long setTrack(Track track) {
         Long id = trackRepository.getNextTrackId();
-        Long albumId = albumRepository.getIdByTitleAndArtist(trackJsonPojo.getAlbumTitle(), trackJsonPojo.getArtistName());
-        trackRepository.setTrack(id, trackJsonPojo, albumId);
+        Long albumId = albumRepository.getIdByTitleAndArtist(track.getAlbumTitle(), track.getArtistName());
+        trackRepository.setTrack(id, track, albumId);
         return id;
     }
 }

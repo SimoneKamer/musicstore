@@ -39,8 +39,8 @@ public class TrackResource {
         return trackRepository.getTracksForAlbum(artistName, albumName);
     }
 
-    @RequestMapping(method = POST, consumes = "application/json")
-    public Long addTrack(@RequestBody TrackJsonPojo trackJsonPojo){
-        return trackService.setTrack(trackJsonPojo);
+    @RequestMapping(method = POST)
+    public Long addTrack(@RequestBody Track track){
+        return trackService.setTrack(track);
     }
 }
