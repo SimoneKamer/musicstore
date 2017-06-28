@@ -1,10 +1,7 @@
 package com.github.shmvanhouten.musicstore.Track;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,8 +31,11 @@ public class TrackResource {
         return trackRepository.getTracksForArtist(artistName);
     }
 
-    @RequestMapping(method=GET, path="/{artistName}/{albumName}")
-    public List<Track> getByArtistAndAlbum(@PathVariable("artistName") String artistName, @PathVariable("albumName") String albumName){
+    @RequestMapping(method=GET)
+    public List<Track> getByArtistAndAlbum(@RequestParam("artistName") String artistName, @RequestParam("albumName") String albumName){
+        if(albumName.isEmpty()){
+            return trackRepository.getTracksForArtist(artistName);
+        }
         return trackRepository.getTracksForAlbum(artistName, albumName);
     }
 
