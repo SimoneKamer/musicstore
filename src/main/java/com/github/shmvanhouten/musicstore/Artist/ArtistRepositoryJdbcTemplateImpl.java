@@ -39,7 +39,7 @@ public class ArtistRepositoryJdbcTemplateImpl implements ArtistRepository {
 
     @Override
     public Long addArtist(String name) {
-        Long nextId = getNextArtistId(name);
+        Long nextId = getNextArtistId();
         String insertSql = new SQL()
                 .INSERT_INTO(ARTIST)
                 .VALUES(ARTIST_ID, namedParam(ARTIST_ID))
@@ -63,7 +63,7 @@ public class ArtistRepositoryJdbcTemplateImpl implements ArtistRepository {
         return namedParameterJdbcTemplate.queryForObject(selectQuery, params, new ArtistRowMapper());
     }
 
-    private Long getNextArtistId(String name) {
+    private Long getNextArtistId() {
         String selectQuery = new SQL()
                 .SELECT("MAX(" + ARTIST_ID + ")")
                 .FROM(ARTIST)
