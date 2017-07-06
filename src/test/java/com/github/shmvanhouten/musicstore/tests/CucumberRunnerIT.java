@@ -11,9 +11,8 @@ import org.junit.runner.RunWith;
                 "html:target/testreport",
                 "json:target/cucumber.json",
                 "junit:target/cucumber-results.xml"},
-        tags = {"~@workInProgress", "~@additionalBusinessScenario"},
         strict = true,
-        monochrome = true)
+        monochrome = false)
 @RunWith(Cucumber.class)
 public class CucumberRunnerIT {
 
