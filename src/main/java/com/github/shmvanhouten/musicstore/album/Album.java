@@ -1,4 +1,4 @@
-package com.github.shmvanhouten.musicstore;
+package com.github.shmvanhouten.musicstore.album;
 
 public class Album {
 

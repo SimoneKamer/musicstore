@@ -1,4 +1,6 @@
-package com.github.shmvanhouten.musicstore;
+package com.github.shmvanhouten.musicstore.album;
+
+import com.github.shmvanhouten.musicstore.Artist;
 
 import java.util.List;
 

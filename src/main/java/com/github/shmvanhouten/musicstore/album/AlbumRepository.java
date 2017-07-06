@@ -1,5 +1,6 @@
-package com.github.shmvanhouten.musicstore;
+package com.github.shmvanhouten.musicstore.album;
 
+import com.github.shmvanhouten.musicstore.Artist;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

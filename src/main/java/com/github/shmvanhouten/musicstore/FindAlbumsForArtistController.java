@@ -1,5 +1,8 @@
 package com.github.shmvanhouten.musicstore;
 
+import com.github.shmvanhouten.musicstore.album.Album;
+import com.github.shmvanhouten.musicstore.album.AlbumService;
+
 import java.util.List;
 
 public class FindAlbumsForArtistController {

@@ -1,4 +1,6 @@
-package com.github.shmvanhouten.musicstore;
+package com.github.shmvanhouten.musicstore.customer;
+
+import com.github.shmvanhouten.musicstore.Employee;
 
 import java.util.List;
 

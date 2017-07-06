@@ -1,4 +1,4 @@
-package com.github.shmvanhouten.musicstore;
+package com.github.shmvanhouten.musicstore.customer;
 
 public class Customer {
     private String firstName;

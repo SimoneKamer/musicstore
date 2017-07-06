@@ -1,5 +1,8 @@
 package com.github.shmvanhouten.musicstore;
 
+import com.github.shmvanhouten.musicstore.customer.Customer;
+import com.github.shmvanhouten.musicstore.customer.CustomerService;
+
 import java.util.List;
 
 public class FindCustomersForEmployeeController {
