@@ -1,4 +1,4 @@
-package com.github.shmvanhouten.musicstore;
+package com.github.shmvanhouten.musicstore.Artist;
 
 public class ArtistService {
     public Artist getArtistByName(String artistName) {

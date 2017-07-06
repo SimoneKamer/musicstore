@@ -2,3 +2,5 @@
 *.iml
 
 target
+/mcbeelen-application.properties
+src/main/resources/shmvanhouten-application.properties
